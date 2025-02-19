@@ -9,6 +9,7 @@ namespace McvNetCoreUtilidades.Controllers
             return View();
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult MemoriaDistribuida()
         {
             string fecha = DateTime.Now.ToLongDateString() + " -- " + DateTime.Now.ToLongTimeString();
