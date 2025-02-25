@@ -5,10 +5,11 @@ namespace McvNetCoreUtilidades.Helpers
 {
     //VAMOS A OFRECER EN PROGRAMACION UNA ENUMERACION CON LAS CARPETAS DE NUESTRO SERVIDOR
     public enum Folders { Images, Facturas, Uploads, Temporal }
+
     public class HelperPathProvider
     {
-        private IWebHostEnvironment hostEnvironment;
         private IServer server;
+        private IWebHostEnvironment hostEnvironment;
 
         public HelperPathProvider(IWebHostEnvironment hostEnvironment, IServer server)
         {

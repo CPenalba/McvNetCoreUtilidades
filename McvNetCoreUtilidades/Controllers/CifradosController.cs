@@ -6,6 +6,35 @@ namespace McvNetCoreUtilidades.Controllers
 {
     public class CifradosController : Controller
     {
+        public IActionResult CifradoEficiente()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CifradoEficiente(string contenido, string resultado, string accion)
+        {
+            if (accion.ToLower() == "cifrar")
+            {
+                string response = HelperCryptography.CifrarContenido(contenido, false);
+                ViewData["TEXTOCIFRADO"] = response;
+                ViewData["SALT"] = HelperCryptography.Salt;
+            }
+            else if (accion.ToLower() == "comparar")
+            {
+                string response = HelperCryptography.CifrarContenido(contenido, true);
+                if (response != resultado)
+                {
+                    ViewData["MENSAJE"] = "Los datos no son correctos";
+                }
+                else
+                {
+                    ViewData["MENSAJE"] = "Los datos son CORRECTOS!!!!";
+                }
+            }
+            return View();
+        }
+
         public IActionResult CifradoBasico()
         {
             return View();
@@ -22,7 +51,7 @@ namespace McvNetCoreUtilidades.Controllers
             }
             else if (accion.ToLower() == "comparar")
             {
-                //SI EL USUARIO QUIERE COMPARAR, NOS ESTARA ENVIANDO EL RESULTADO PARA COMPARAR
+                //SI EL USUARIO QUIERE COMPARA, NOS ESTARA ENVIANDO EL RESULTADO PARA COMPARAR
                 if (response != resultado)
                 {
                     ViewData["MENSAJE"] = "Los datos no coinciden";
@@ -30,36 +59,6 @@ namespace McvNetCoreUtilidades.Controllers
                 else
                 {
                     ViewData["MENSAJE"] = "Contenidos iguales!!!";
-                }
-            }
-            return View();
-        }
-
-        public IActionResult CifradoEficiente()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult CifradoEficiente(string contenido, string resultado, string accion)
-        {
-            if (accion.ToLower() == "cifrar")
-            {
-                string response =
-                HelperCryptography.CifrarContenido(contenido, false);
-                ViewData["TEXTOCIFRADO"] = response;
-                ViewData["SALT"] = HelperCryptography.Salt;
-            }
-            else if (accion.ToLower() == "comparar")
-            {
-                string response = HelperCryptography.CifrarContenido(contenido, true);
-                if (response != resultado)
-                {
-                    ViewData["MENSAJE"] = "Los datos no son correctos";
-                }
-                else
-                {
-                    ViewData["MENSAJE"] = "Los datos son CORRECTOS!!!!";
                 }
             }
             return View();

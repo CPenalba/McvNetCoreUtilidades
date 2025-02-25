@@ -17,7 +17,8 @@ namespace McvNetCoreUtilidades.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubirFichero(IFormFile fichero)
+        public async Task<IActionResult>
+            SubirFichero(IFormFile fichero)
         {
             string fileName = fichero.FileName;
             //LAS RUTAS DE FICHEROS NO DEBO ESCRIBIRLAS, TENGO QUE GENERAR DICHAS RUTAS CON EL SISTEMA DONDE ESTOY TRABAJANDO

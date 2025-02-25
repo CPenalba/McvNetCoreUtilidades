@@ -24,8 +24,7 @@ namespace McvNetCoreUtilidades.Helpers
         }
 
         //CREAMOS UN METODO PARA CIFRAR DE FORMA EFICIENTE
-        public static string CifrarContenido
-            (string contenido, bool comparar)
+        public static string CifrarContenido(string contenido, bool comparar)
         {
             if (comparar == false)
             {
@@ -51,21 +50,21 @@ namespace McvNetCoreUtilidades.Helpers
             return resultado;
         }
 
-        //COMENZAMOS CREANDO UN METODO STATIC PARA CIFRAR UN CONTENIDO. SIMPLEMENTE DEVOLVEMOS EL TEXTO CIFRADO
+        //COMENZAMOS CREANDO UN METODO static PARA CIFRAR UN CONTENIDO.
+        //SIMPLEMENTE DEVOLVEMOS EL TEXTO CIFRADO
         public static string EncriptarTextoBasico(string contenido)
         {
-            //NECESITAMOS UN ARRAY DE BYTES PARA CONVERTIR EL CONTENIDO DE ENTRADA A BYTE[]
+            //NECESITAMOS UN ARRAY DE BYTES PARA CONVERTIR EL CONTENIDO DE ENTRADA A byte[]
             byte[] entrada;
-            //AL CIFRAR, NOS DEVUELVE BYTES[] DE SALIDA
+            //AL CIFRAR EL CONTENIDO, NOS DEVUELVE BYTES[] DE SALIDA
             byte[] salida;
-            //NECESITAMOS UNA CLASE QUE NOS PERMITE CONVERTIR STRING A BYTE[] Y VICEVERSA
+            //NECESITAMOS UNA CLASE QUE NOS PERMITE CONVERTIR DE STRING A BYTE[] Y VICEVERSA
             UnicodeEncoding encoding = new UnicodeEncoding();
             //NECESITAMOS UN OBJETO PARA CIFRAR EL CONTENIDO
             SHA1 managed = SHA1.Create();
-            //CONVERTIMOS EL CONTENIDO DE ENTRADA A BYTE[]
+            //CONVERTIMOS EL CONTENIDO DE ENTRADA A byte[]
             entrada = encoding.GetBytes(contenido);
-            //LOS OBJETOS PARA CIFRAR CONTIENEN UN METODO LLAMADO COMPUTEDHASH QUE RECIBEN UN ARRAY DE BYTES E INTERNAMENTE
-            //HACEN COSAS YY DEVUELVE OTRO ARRAY DE BYTES
+            //LOS OBJETOS PARA CIFRAR CONTIENEN UN METODO LLAMADO ComputedHash QUE RECIBEN UN ARRAY DE BYTES E INTERNAMENTE HACEN COSAS Y DEVUELVE OTRO ARRAY DE BYTES
             salida = managed.ComputeHash(entrada);
             //CONVERTIMOS SALIDA A STRING
             string resultado = encoding.GetString(salida);
