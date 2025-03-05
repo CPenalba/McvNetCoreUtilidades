@@ -49,5 +49,12 @@ namespace McvNetCoreUtilidades.Controllers
             Coche car = this.Cars.FirstOrDefault(x => x.IdCoche == idcoche);
             return PartialView("_DetailsCoche", car);
         }
+
+        public IActionResult Details(int idcoche)
+        {
+            Coche car = this.Cars.FirstOrDefault(x => x.IdCoche == idcoche);
+
+            return View(car);
+        }
     }
 }
