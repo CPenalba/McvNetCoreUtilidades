@@ -4,6 +4,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<HelperPathProvider>();
+
+builder.Services.AddSession();
+
 builder.Services.AddMemoryCache();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddControllersWithViews();
@@ -25,6 +28,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
